@@ -1,5 +1,6 @@
 package com.example.master_creator
 
+import java.lang.*
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -25,22 +26,26 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.net.URL
 
-val apiKey = "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"
 
-val openAI = OpenAI(apiKey)
 @OptIn(BetaOpenAI::class)
 class ImageGenerationActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
+        val os: String? = System.getenv("OPENAI")
+        println(os)
         super.onCreate(savedInstanceState)
         setContent {
+
             Master_CreatorTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    var url = generation_image("dnd map")
+                    //val apiKey: String  = System.getenv("OPENAI")
+                    //println(apiKey+"GG")
+                         // Path: Windows_NT
+                    val apiKey: String = ""
+                    val openAI = OpenAI(apiKey)
+                    var url = generation_image("dnd map",openAI)
                     //val imageurl = URL(url.toString())
                     //val im = EnregistrementImage(imageurl.toString())
-
-
                     AffichageImage(url = url.toString())
 
                 }
@@ -51,7 +56,7 @@ class ImageGenerationActivity : ComponentActivity(){
 }
 
 @OptIn(BetaOpenAI::class)
-fun generation_image(promptGenerationImage: String): Any = runBlocking {
+fun generation_image(promptGenerationImage: String,openAI:OpenAI): Any = runBlocking {
 
      var image = openAI.imageURL(
         creation = ImageCreation(
@@ -105,3 +110,4 @@ suspend fun Context.saveBitmap(fileName: String, bitmap: Bitmap) = withContext(D
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
     }
 }
+
