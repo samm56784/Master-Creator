@@ -41,7 +41,7 @@ class ImageGenerationActivity : ComponentActivity(){
                     //val apiKey: String  = System.getenv("OPENAI")
                     //println(apiKey+"GG")
                          // Path: Windows_NT
-                    val apiKey: String = ""
+                    val apiKey: String = "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"
                     val openAI = OpenAI(apiKey)
                     var url = generation_image("dnd map",openAI)
                     //val imageurl = URL(url.toString())
