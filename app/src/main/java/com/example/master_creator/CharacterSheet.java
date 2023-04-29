@@ -1,6 +1,8 @@
 package com.example.master_creator;
 
-public class CharacterSheet {
+import java.io.Serializable;
+
+public class CharacterSheet implements Serializable {
     private int defense;
     private int strength;
     private int dexterity;
@@ -29,7 +31,53 @@ public class CharacterSheet {
         this.nom = nom;
     }
 
+    public CharacterSheet(){
 
+    }
+
+
+    // Pour les dégats qu'on récoit
+    public void takeDamage(int damage){
+        if (damage > defense){
+            pointdevie = pointdevie - (damage - defense);
+        }
+    }
+
+
+    public int get(String nomAttribue) {
+switch (nomAttribue){
+            case "Defence":
+                return defense;
+            case "Strength":
+                return strength;
+            case "Dexterity":
+                return dexterity;
+            case "Intelligence":
+                return intelligence;
+            case "Stamina":
+                return stamina;
+            case "Health Point":
+                return pointdevie;
+            case "Wisdom":
+                return wisdom;
+            case "Charisma":
+                return charisme;
+            case "attaque":
+                if (attaque){
+                    return 1;
+                }
+                else{
+                    return 0;
+                }
+            case "weapon":
+                return weapon;
+            default:
+                return 0;
+        }
+
+
+
+    }
 
 
     public void setDefense(int defense) {

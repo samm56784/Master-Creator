@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Master_Creator</string>
+    <string name="title_activity_choix_dimage">ChoixDimage</string>
+    <string name="title_activity_image_generation">ImageGenerationActivity</string>
 </resources>
